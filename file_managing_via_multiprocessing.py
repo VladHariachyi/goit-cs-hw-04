@@ -1,21 +1,6 @@
 from multiprocessing import Pool
-from collections import defaultdict
 
-from shared import SearchConfig, search_in_file_conter, get_worker_files, get_worker_config
-
-
-def search_worker(config: dict):
-    result = defaultdict(list)
-
-    for word in config["kwrds"]:
-        for path in config["files"]:
-            with open(path) as file:
-                if search_in_file_conter(word, file):
-                    result[f"{word}"].append(path)
-                else:
-                    result[f"{word}"] = []
-
-    return dict(result)
+from shared import SearchConfig, search_worker, get_worker_files, get_worker_config
 
 
 def search_in_files(search_config: SearchConfig):
