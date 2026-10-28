@@ -24,3 +24,6 @@ def search_in_file_conter(
         count += len(re.findall(search_criteria, line, re.IGNORECASE))
 
     return count
+
+def get_worker_config(files_paths: list[list[str]], kwrds: list[str]):
+    return [{"files": files_group, "kwrds": kwrds} for files_group in files_paths]
